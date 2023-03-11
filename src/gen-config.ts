@@ -27,8 +27,15 @@ const sectionBuilder = (command: COMMANDS) => (options: Record<string, string | 
 
 export const SECTIONS = {
   output: sectionBuilder(COMMANDS.OUTPUT),
-
-  // TODO: rest
+  filter: sectionBuilder(COMMANDS.FILTER),
+  service: sectionBuilder(COMMANDS.SERVICE),
+  input: sectionBuilder(COMMANDS.INPUT),
+  custom: sectionBuilder(COMMANDS.CUSTOM),
+  parser: sectionBuilder(COMMANDS.PARSER),
+  multilineParser: sectionBuilder(COMMANDS.MULTILINE_PARSER),
+  plugins: sectionBuilder(COMMANDS.PLUGINS),
+  upstream: sectionBuilder(COMMANDS.UPSTREAM),
+  node: sectionBuilder(COMMANDS.NODE),
 };
 
 export class FluentBitGeneratedSchema implements FluentBitBaseSchema {
