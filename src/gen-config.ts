@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { COMMANDS, FluentBitBaseSchema, FluentBitSection } from './constants';
+import { isValidFluentBitSection } from './guards';
 import { normalizeField } from './parser';
 import { schemaToString } from './schemaToString';
 
@@ -26,6 +27,7 @@ const sectionBuilder = (command: COMMANDS) => (options: Record<string, string | 
 
 export const SECTIONS = {
   output: sectionBuilder(COMMANDS.OUTPUT),
+
   // TODO: rest
 };
 
@@ -33,6 +35,12 @@ export class FluentBitGeneratedSchema implements FluentBitBaseSchema {
   readonly schema;
 
   constructor(sections: FluentBitSection[]) {
+    const invalidSection = sections.find((s) => !isValidFluentBitSection(s));
+    if (invalidSection) {
+      throw new Error(
+        `${invalidSection.command} section${invalidSection.name ? ` with name ${invalidSection.name}` : ''} is invalid`
+      );
+    }
     this.schema = sections;
   }
 

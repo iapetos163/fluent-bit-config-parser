@@ -5,12 +5,13 @@ import {
   EXCLUDED_TAGS,
   FLUENTBIT_INCLUDE_REGEX,
   CUSTOM_SECTIONS_NAMES,
+  type FluentBitSection,
 } from './constants';
 
 export const isFluentBit = (config: string) =>
   !!(config.match(FLUENTBIT_REGEX) || config.match(FLUENTBIT_INCLUDE_REGEX));
 
-export const isValidFluentBitSection = (schema?: FluentBitSchemaType | null): schema is FluentBitSchemaType =>
+export const isValidFluentBitSection = (schema?: FluentBitSection | null): schema is FluentBitSection =>
   !!schema && !EXCLUDED_TAGS.has(schema.command.toLowerCase());
 
 export const isString = (value?: string): value is string => typeof value === 'string';
