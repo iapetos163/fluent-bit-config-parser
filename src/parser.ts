@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import {
   COMMANDS,
+  FluentBitBaseSchema,
   FluentBitSection,
   FluentBitToken,
   TOKEN_TYPES,
@@ -16,7 +17,7 @@ import { dirname, isAbsolute } from 'path/posix';
 import { TokenError } from './TokenError';
 import { TokenIndex } from './TokenIndex';
 
-function normalizeField(field: string) {
+export function normalizeField(field: string) {
   const normalizedField = field.toLowerCase();
   return normalizedField === 'match_regex' ? 'match' : normalizedField;
 }
@@ -230,7 +231,7 @@ export function tokensToAST(tokens: FluentBitToken[], tokenIndex: TokenIndex): F
 function getFullPath(filePath: string) {
   return isAbsolute(filePath) ? filePath : realpathSync(filePath);
 }
-export class FluentBitSchema {
+export class FluentBitSchema implements FluentBitBaseSchema {
   private _filePath: string;
   private _source: string;
   private _tokens: FluentBitToken[];

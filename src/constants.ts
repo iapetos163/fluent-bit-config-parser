@@ -41,6 +41,12 @@ export interface FluentBitSchemaType extends FluentBitSection {
   __filePath: string;
 }
 
+export interface FluentBitBaseSchema {
+  readonly schema: FluentBitSection[];
+
+  toString(indent?: number): string;
+}
+
 export type FluentBitToken = Token & { filePath: string };
 export const FLUENTBIT_REGEX = /(?<![#][ ]*)\[[A-Z_]{1,}\]/g;
 
