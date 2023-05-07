@@ -6715,7 +6715,9 @@ var require_moo = __commonJS({
 
 // index.ts
 __export(exports, {
+  FluentBitGeneratedSchema: () => FluentBitGeneratedSchema,
   FluentBitSchema: () => FluentBitSchema,
+  SECTIONS: () => SECTIONS,
   TokenError: () => TokenError
 });
 
@@ -7088,8 +7090,22 @@ var SECTIONS = {
   upstream: sectionBuilder(COMMANDS.UPSTREAM),
   node: sectionBuilder(COMMANDS.NODE)
 };
+var FluentBitGeneratedSchema = class {
+  constructor(sections) {
+    const invalidSection = sections.find((s) => !isValidFluentBitSection(s));
+    if (invalidSection) {
+      throw new Error(`${invalidSection.command} section${invalidSection.name ? ` with name ${invalidSection.name}` : ""} is invalid`);
+    }
+    this.schema = sections;
+  }
+  toString(indent) {
+    return schemaToString(this.schema, [], { propIndent: indent });
+  }
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
+  FluentBitGeneratedSchema,
   FluentBitSchema,
+  SECTIONS,
   TokenError
 });

@@ -1,1 +1,1 @@
-export { FluentBitSchema, TokenError } from './src';
+export { FluentBitSchema, TokenError, FluentBitGeneratedSchema, SECTIONS } from './src';
