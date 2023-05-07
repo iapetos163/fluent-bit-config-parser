@@ -42,12 +42,6 @@ export class FluentBitGeneratedSchema implements FluentBitBaseSchema {
   readonly schema;
 
   constructor(sections: FluentBitSection[]) {
-    const invalidSection = sections.find((s) => !isValidFluentBitSection(s));
-    if (invalidSection) {
-      throw new Error(
-        `${invalidSection.command} section${invalidSection.name ? ` with name ${invalidSection.name}` : ''} is invalid`
-      );
-    }
     this.schema = sections;
   }
 
