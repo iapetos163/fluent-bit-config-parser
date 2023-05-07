@@ -1,6 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
 import { COMMANDS, FluentBitBaseSchema, FluentBitSection } from './constants';
-import { isValidFluentBitSection } from './guards';
 import { normalizeField } from './parser';
 import { schemaToString } from './schemaToString';
 
