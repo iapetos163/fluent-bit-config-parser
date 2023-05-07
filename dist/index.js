@@ -7092,10 +7092,6 @@ var SECTIONS = {
 };
 var FluentBitGeneratedSchema = class {
   constructor(sections) {
-    const invalidSection = sections.find((s) => !isValidFluentBitSection(s));
-    if (invalidSection) {
-      throw new Error(`${invalidSection.command} section${invalidSection.name ? ` with name ${invalidSection.name}` : ""} is invalid`);
-    }
     this.schema = sections;
   }
   toString(indent) {
